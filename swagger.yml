@@ -1,0 +1,369 @@
+swagger: '2.0'
+info:
+  version: 'v1'
+  title: 'Livraria Virtual'
+  description: 'Manipulação de livros e suas dependências '
+paths:
+  /livros:
+    get:
+      tags:
+      - livro
+      summary: Busca livros do armazenamento
+      operationId: getLivros
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        200:
+          description: success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Livro'
+        400:
+          description: não encontrado
+    post:
+      tags:
+      - livro
+      summary: Adiciona um novo livro
+      operationId: addLivro
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: dados do livro que será adicionado
+        required: true
+        schema:
+          $ref: '#/definitions/Livro'
+      responses:
+        405:
+          description: Dados inválidos
+  /livros/{isbn}:
+    get:
+      tags:
+      - livro
+      summary: Busca livro por isbn
+      description: Retorna um unico livro
+      operationId: getLivroByIsbn
+      produces:
+      - application/json
+      parameters:
+      - name: isbn
+        in: path
+        description: identificador do livro de retorno
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: seccess
+          schema:
+            $ref: '#/definitions/Livro'
+        400:
+          description: ISBN inválido
+        404:
+          description: Livro não encontrado
+    put:
+      tags:
+      - livro
+      summary: Atualização de um livro
+      description: Efetua a alteração de um ou varios dados de um livro
+      operationId: updateLivro
+      produces:
+      - application/json
+      parameters:
+      - name: isbn
+        in: path
+        description: identificador do livro que será alterado
+        required: true
+        type: number
+      - in: body
+        name: body
+        description: dados do livro que serão alterados
+        required: true
+        schema:
+          $ref: '#/definitions/Livro'
+      responses:
+        400:
+          description: Livro inválido
+        404:
+          description: Livro não encontrado          
+    delete:
+      tags:
+      - livro
+      summary: Remoção de um livro
+      description: Remove um livro
+      operationId: deleteLivro
+      produces:
+      - application/json
+      parameters:
+      - name: isbn
+        in: path
+        description: identificador do livro que será removido
+        required: true
+        type: number
+      responses:
+        400:
+          description: Livro inválido
+        404:
+          description: Livro não encontrado
+  /autores:
+    get:
+      tags:
+      - autor
+      summary: Busca autores do armazenamento
+      operationId: getAutores
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        200:
+          description: success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Autor'
+        400:
+          description: não encontrado
+    post:
+      tags:
+      - autor
+      summary: Adiciona um novo autor
+      operationId: addAutor
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: dados do autor que será adicionado
+        required: true
+        schema:
+          $ref: '#/definitions/Autor'
+      responses:
+        405:
+          description: Dados inválidos
+  /autores/{id}:
+    get:
+      tags:
+      - autor
+      summary: Busca autor por id
+      description: Retorna um unico autor
+      operationId: getAutorById
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: identificador do autor de retorno
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: seccess
+          schema:
+            $ref: '#/definitions/Autor'
+        400:
+          description: ID inválido
+        404:
+          description: Autor não encontrado
+    put:
+      tags:
+      - autor
+      summary: Atualização de um autor
+      description: Efetua a alteração de um ou varios dados de um autor
+      operationId: updateAutor
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: identificador do autor que será alterado
+        required: true
+        type: integer
+      - in: body
+        name: body
+        description: dados do autor que serão alterados
+        required: true
+        schema:
+          $ref: '#/definitions/Autor'
+      responses:
+        400:
+          description: Autor inválido
+        404:
+          description: Autor não encontrado            
+    delete:
+      tags:
+      - autor
+      summary: Remoção de um autor
+      description: Remove um autor
+      operationId: deleteAutor
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: identificador do autor que será removido
+        required: true
+        type: integer
+      responses:
+        400:
+          description: Autor inválido
+        404:
+          description: Autor não encontrado
+  /generos:
+    get:
+      tags:
+      - genero
+      summary: Busca generos do armazenamento
+      operationId: getGeneros
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        200:
+          description: success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Genero'
+        400:
+          description: não encontrado
+    post:
+      tags:
+      - genero
+      summary: Adiciona um novo genero
+      operationId: addGenero
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: dados do genero que será adicionado
+        required: true
+        schema:
+          $ref: '#/definitions/Genero'
+      responses:
+        405:
+          description: Dados inválidos
+  /generos/{id}:
+    get:
+      tags:
+      - genero
+      summary: Busca genero por id
+      description: Retorna um unico genero
+      operationId: getGeneroById
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: identificador do genero de retorno
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: seccess
+          schema:
+            $ref: '#/definitions/Genero'
+        400:
+          description: ID inválido
+        404:
+          description: Genero não encontrado  
+    put:
+      tags:
+      - genero
+      summary: Atualização de um genero
+      description: Efetua a alteração de um ou varios dados de um genero
+      operationId: updateGenero
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: identificador do genero que será alterado
+        required: true
+        type: integer
+      - in: body
+        name: body
+        description: dados do genero que serão alterados
+        required: true
+        schema:
+          $ref: '#/definitions/Genero'
+      responses:
+        400:
+          description: Genero inválido
+        404:
+          description: Genero não encontrado      
+    delete:
+      tags:
+      - genero
+      summary: Remoção de um genero
+      description: Remove um genero
+      operationId: deleteGenero
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: identificador do genero que será removido
+        required: true
+        type: integer
+      responses:
+        400:
+          description: Genero inválido
+        404:
+          description: Genero não encontrado
+definitions:
+  Livro:
+    type: object
+    properties:
+      isbn:
+        type: number
+      titulo:
+        type: string
+      autor:
+        $ref: '#/definitions/Autor'
+      genero:
+        $ref: '#/definitions/Genero'
+      data:
+        type: string
+        format: date-time
+      preco:
+        type: number
+    xml:
+      name: Livro
+  Autor:
+    type: object
+    properties:
+      id:
+        type: integer
+      nome:
+        type: string
+    xml:
+      name: Autor
+  Genero:
+    type: object
+    properties:
+      id:
+        type: integer
+      genero:
+        type: string
+    xml:
+      name: Genero
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /IKokiri/Livraria/v1
+schemes:
+ - https
