@@ -1,0 +1,29 @@
+post /IKokiri/Livraria/v1/autores
+
+get /IKokiri/Livraria/v1/autores
+
+delete /IKokiri/Livraria/v1/autores/{id}
+
+get /IKokiri/Livraria/v1/autores/{id}
+
+put /IKokiri/Livraria/v1/autores/{id}
+
+post /IKokiri/Livraria/v1/generos
+
+get /IKokiri/Livraria/v1/generos
+
+delete /IKokiri/Livraria/v1/generos/{id}
+
+get /IKokiri/Livraria/v1/generos/{id}
+
+put /IKokiri/Livraria/v1/generos/{id}
+
+post /IKokiri/Livraria/v1/livros
+
+get /IKokiri/Livraria/v1/livros
+
+delete /IKokiri/Livraria/v1/livros/{isbn}
+
+get /IKokiri/Livraria/v1/livros/{isbn}
+
+put /IKokiri/Livraria/v1/livros/{isbn}
